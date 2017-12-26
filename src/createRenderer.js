@@ -1,5 +1,5 @@
 import marked from 'marked';
-import he from 'he';
+import {decode} from 'he';
 import escapeHtml from 'escape-html';
 
 export function codeRenderer(tracker, options) {
@@ -46,7 +46,7 @@ export default function createRenderer (tracker, options, overrides = {}) {
         tracker.tree.splice(tracker.tree.indexOf(tracker.elements[elementIdMatch[1]]), 1)
         return tracker.elements[elementIdMatch[1]];
       } else if (text != '') {
-        return he.decode(text);
+        return decode(text);
       }
 
       return null;
